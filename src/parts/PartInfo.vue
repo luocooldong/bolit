@@ -15,7 +15,7 @@ export default {
     id: { 
       type: [Number, String],
       validator(value) {
-        return Number;
+        return Number.isInteger(Number(value));
       }
     },
   },

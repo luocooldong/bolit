@@ -1,35 +1,30 @@
 <template>
-  <div>
-    <h1>{{ part.title }}</h1>
-    <div>{{ part.description }}</div>
-  </div>
+	<div>
+		<h1>{{ part.title }}</h1>
+		<div>{{ part.description }}</div>
+	</div>
 </template>
 
 <script>
-import parts from '../data/parts.js';
+	import parts from "../data/parts.js";
 
-export default {
-  name: "PartInfo",
-  props: {
-    partType: { type: String },
-    id: { 
-      type: [Number, String],
-      validator(value) {
-        return Number.isInteger(Number(value));
-      }
-    },
-  },
-  data() {
-    const { partType, id } = this;
-    return parts[partType].find(part => part.id === +id);
-  },
-  computed: {
-    part() {
-      title: "Part";
-    }
-  }
-};
+	export default {
+		name: "PartInfo",
+		// props: ["partType", "id"],
+		props: {
+		  partType: { type: String },
+		  id: {
+		    type: [Number, String],
+		    validator(value) {
+		      return Number.isInteger(Number(value));
+		    }
+		  },
+		},
+		computed: {
+			part() {
+				const { partType, id } = this;
+				return parts[partType].find(part => part.id === +id);
+			}
+		}
+	};
 </script>
-
-<style scoped>
-</style>

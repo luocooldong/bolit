@@ -30,5 +30,32 @@ export default new Router({
       component: PartInfo,
       props: true,
     },
+    {
+      path: '/parts/browse',
+      name: 'BrowseParts',
+      component: BrowseParts,
+      children: [
+        {
+          name: 'BrowseHeads',
+          path: 'heads',
+          component: RobotHeads,
+        },
+        {
+          name: 'BrowseArms',
+          path: 'arms',
+          component: RobotArms,
+        },
+        {
+          name: 'BrowseBases',
+          path: 'bases',
+          component: RobotBases,
+        },
+        {
+          name: 'BrowseTorsos',
+          path: 'torsos',
+          component: RobotTorsos,
+        },
+      ],
+    },
   ],
 });

@@ -4,22 +4,26 @@
 			<nav>
 				<ul>
 					<li class="nav-item">
-						<router-link active-class="foo" class="nav-link" :to="{name: 'Home'}" exact>
+						<router-link class="nav-link" :to="{name: 'Home'}" exact>
 							<img class="logo" src="./assets/build-a-bot-logo.png">
 						</router-link>Build-a-Bot
 					</li>
 					<li class="nav-item">
-						<router-link active-class="foo" class="nav-link" :to="{name: 'Build'}" exact>Build</router-link>
+						<router-link class="nav-link" :to="{name: 'Build'}" exact>Build</router-link>
+					</li>
+					<li class="nav-item cart">
+						<router-link class="nav-link" to="/cart" exact>Cart</router-link>
+						<div class="cart-items">{{cart.length}}</div>
 					</li>
 				</ul>
 			</nav>
 		</header>
 		<div class="container">
 			<aside class="aside">
-        <router-view name="sidebar"/>
-      </aside>
+				<router-view name="sidebar"/>
+			</aside>
 			<main>
-				<router-view />
+				<router-view/>
 			</main>
 		</div>
 	</div>
@@ -32,6 +36,11 @@
 		name: "app",
 		components: {
 			RobotBuilder
+		},
+		computed: {
+			cart() {
+				return this.$store.state.cart;
+			}
 		}
 	};
 </script>
@@ -41,8 +50,14 @@
 		background: linear-gradient(to bottom, #555, #999);
 		background-attachment: fixed;
 	}
+	.nav-item.cart {
+		position: relative;
+		margin-left: auto;
+		border-right: none;
+	}
 	#app {
 		font-family: "operator", "Avenir", Helvetica, Arial, sans-serif;
+		background-color: #696869;
 	}
 	main {
 		margin: 0 auto;
@@ -81,11 +96,23 @@
 		display: flex;
 		margin: 10px auto 0 auto;
 		justify-content: center;
+		width: 1184px;
 	}
 	.aside {
 		padding: 30px;
 		background-color: #aaa;
 		width: 100px;
 		min-height: 300px;
+	}
+	.cart-items {
+		position: absolute;
+		top: -5px;
+		right: -9px;
+		font-size: 18px;
+		width: 20px;
+    text-align: center;
+    display: inline-block;
+    border-radius: 100px;
+    background-color: mediumspringgreen;
 	}
 </style>

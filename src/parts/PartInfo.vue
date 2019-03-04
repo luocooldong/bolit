@@ -6,7 +6,8 @@
 </template>
 
 <script>
-	import parts from "../data/parts.js";
+  // import parts from "../data/parts.js";
+  import getPartsMixin from './get-parts-mixin.js';
 
 	export default {
 		name: "PartInfo",

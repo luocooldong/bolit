@@ -78,7 +78,7 @@ import CollapsibleSection from '../shared/CollapsibleSection.vue';
 export default {
   name: "RobotBuilder",
   created() {
-    this.$store.dispatch('getParts');
+    this.$store.dispatch('robots/getParts');
     console.log("component created!");
   },
   beforeRouteLeave (to, from, next) {
@@ -107,7 +107,7 @@ export default {
   mixins: [createdHookMixin],
   computed: {
     availableParts({commit}) {
-      return this.$store.state.parts;
+      return this.$store.state.robots.parts;
     },
     saleBorderClass() {
       return {
@@ -129,9 +129,10 @@ export default {
         robot.torso.cost +
         robot.rightArm.cost +
         robot.base.cost;
-      this.$store.commit('addRobotToCart', Object.assign({}, robot, { cost }));
+      this.$store.dispatch('robots/addRobotToCart', Object.assign({}, robot, { cost }))
+        .then(() => this.$router.push('/cart'));
       this.addedToCart = true;
-    }
+    },
   },
 };
 </script>

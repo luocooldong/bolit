@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import getPartsMixin from './get-parts-mixin.js';
+import getPartsMixin from './get-parts-mixin';
 
 export default {
   name: 'RobotHeads',

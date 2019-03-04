@@ -10,7 +10,7 @@
 
 	export default {
 		name: "PartInfo",
-		// props: ["partType", "id"],
+    mixins: [getPartsMixin],
 		props: {
 		  partType: { type: String },
 		  id: {
@@ -23,7 +23,7 @@
 		computed: {
 			part() {
 				const { partType, id } = this;
-				return parts[partType].find(part => part.id === +id);
+				return this.parts[partType].find(part => part.id === +id);
 			}
 		}
 	};
